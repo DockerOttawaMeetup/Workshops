@@ -27,7 +27,7 @@ mongo:
     - mongo_data:/data/db
 node-movies:
   image: dockerottawa/node-movies
-  container_name: node
+  container_name: node-movies
   restart: always
   links:
     - mongo 
