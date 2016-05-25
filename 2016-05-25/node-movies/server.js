@@ -36,6 +36,7 @@ app.get('/movies', function (req, res) {
 
 mongoose.connect('mongodb://mongo/test', function (err) {
   if (err) {
+    console.log(err)
     process.exit()
   }
   app.listen(3000, function () {
