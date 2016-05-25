@@ -15,26 +15,27 @@ var movieSchema = mongoose.Schema({
 var Movie = mongoose.model('Movie', movieSchema)
 
 var movie1 = new Movie({ title: 'The Princess Bride' })
-movie1.save(function (err, movie) {
+movie1.save((err, movie) => {
   if (err) {
     return console.error(err)
   }
 })
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get('/movies', function (req, res) {
+app.get('/movies', (req, res) => {
   Movie.find({}, (err, movies) => {
     if (err) {
       res.send(500, err)
+    } else {
+      res.send(movies)
     }
-    res.send(movies)
   })
 })
 
-mongoose.connect('mongodb://mongo/test', function (err) {
+mongoose.connect(process.env.MONGO_URL || 'mongodb://mongo/test', err => {
   if (err) {
     console.log(err)
     process.exit()
