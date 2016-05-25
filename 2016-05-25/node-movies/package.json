@@ -2,7 +2,7 @@
   "name": "node-example",
   "version": "0.0.1",
   "engines": {
-    "node": ">= 4.3.0"
+    "node": ">= 6.2.0"
   },
   "private": true,
   "scripts": {
@@ -13,8 +13,8 @@
     "express": "~4.13.0",
     "express-session": "~1.2.0",
     "express-winston": "^1.3.1",
-    "mongodb": "^1.4.39",
-    "mongoose": "~3.8.0",
+    "mongodb": "^1.4.40",
+    "mongoose": "~3.8.23",
     "winston": "^2.1.0"
   },
   "devDependencies": {
