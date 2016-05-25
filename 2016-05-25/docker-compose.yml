@@ -1,0 +1,40 @@
+#hostlocal:
+#  image: gliderlabs/hostlocal
+#  net: host
+#  cap_add:
+#    - NET_ADMIN
+consul:
+  image: gliderlabs/consul-server
+  container_name: consul
+  restart: always
+  command: -bootstrap-expect 1 
+  ports:
+    - "8500:8500"
+registrator:
+  image: gliderlabs/registrator
+  container_name: registrator
+  restart: always
+#  net: host
+  links:
+    - consul
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock
+  command: consul://consul:8500
+mongo:
+  image: mongo:2.6
+  container_name: mongo
+  restart: always
+  command: --smallfiles
+  ports:
+    - "27017:27017"
+  links:
+    - consul
+  volumes:
+    - mongo_data:/data/db
+node-movies:
+  image: drmdrew/node-movies
+  container_name: node
+  restart: always
+  links:
+    - mongo 
+
