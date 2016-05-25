@@ -2,7 +2,7 @@ consul:
   image: gliderlabs/consul-server
   container_name: consul
   restart: always
-  command: -bootstrap-expect 1 
+  command: -bootstrap-expect 1
   ports:
     - "8500:8500"
 registrator:
@@ -21,8 +21,6 @@ mongo:
   command: --smallfiles
   ports:
     - "27017:27017"
-  links:
-    - consul
   volumes:
     - mongo_data:/data/db
 node-movies:
@@ -30,5 +28,8 @@ node-movies:
   container_name: node-movies
   restart: always
   links:
-    - mongo 
-
+    - mongo
+  environment:
+    - MONGO_URL=mongodb://mongo:27017/test
+  ports:
+    - "3000:3000"

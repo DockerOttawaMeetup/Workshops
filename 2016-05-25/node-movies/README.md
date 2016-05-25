@@ -1,6 +1,5 @@
 Build
 =====
 ```
-docker build -t drmdrew/node-movie .
+docker build -t dockerottawa/node-movies .
 ```
-
